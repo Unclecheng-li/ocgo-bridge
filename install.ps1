@@ -29,6 +29,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $here
+$selftestFailed = $false
 
 function Say($msg, $color = 'Gray') { Write-Host $msg -ForegroundColor $color }
 function Ok($msg)   { Say "  [ok]   $msg" 'Green' }
@@ -148,6 +149,7 @@ if (Test-Path $selftest) {
         Ok 'self-test passed'
     } else {
         Bad 'self-test FAILED - see output above'
+        $selftestFailed = $true
     }
 } else {
     Warn 'tools\selftest.py missing from the package; skipped self-test'
@@ -201,3 +203,8 @@ Say ""
 Say "  Verify it is up:" 'White'
 Say "    curl http://127.0.0.1:$port/v1/models" 'Green'
 Say ""
+
+if ($selftestFailed) {
+    Say "  Exit code 1: the self-test failed, so this install is not usable yet." 'Red'
+    exit 1
+}
