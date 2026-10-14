@@ -1,0 +1,9 @@
+{
+  "key": "oc_sk_REPLACE_WITH_YOUR_KEY",
+  "upstream": "https://opencode.ai/inference/go/v1",
+  "user_agent": "workbuddy-opencode-go/1.0",
+  "model": "deepseek-v4.1-flash",
+  "host": "127.0.0.1",
+  "port": 8787,
+  "http_proxy": ""
+}

@@ -1,0 +1,21 @@
+# Line-ending policy.
+#
+# Default: normalise every text file to LF in the repository.
+* text=auto eol=lf
+
+# The Windows launchers MUST be checked out with CRLF.
+#
+# This is not cosmetic. wscript reads .vbs as ANSI/GBK on Chinese Windows; a
+# mangled GBK double-byte sequence can swallow a bare LF, merging two lines and
+# producing a bogus "800A0400 / 缺少语句" compile error with a wrong line number.
+# cmd.exe batch files have their own LF quirks around labels and multi-line
+# constructs. Neither failure is obvious from the source text.
+#
+# See AGENTS.md §1 and docs/TROUBLESHOOTING.md §3.
+*.vbs   text eol=crlf
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+*.ps1   text eol=crlf
+
+# Runtime artefacts are never text.
+*.log   binary

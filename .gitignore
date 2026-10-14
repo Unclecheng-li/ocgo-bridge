@@ -1,0 +1,31 @@
+# --- 本地配置（含明文 API Key，绝对不要提交）---
+config.json
+python.txt
+
+# --- 运行时产物 ---
+proxy.log
+proxy.log.*
+*.log
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- 安装脚本在启动文件夹写入的定位文件（如果被误拷回仓库）---
+proxy_dir.txt
+
+# --- 编辑器 / 系统 ---
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# --- 临时文件 ---
+_tmp*/
+*.tmp
