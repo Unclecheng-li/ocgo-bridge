@@ -288,6 +288,7 @@ Two 502 variants look alike but have different owners. `upstream unreachable` is
 | `host` | `OPENCODE_GO_HOST` | `127.0.0.1` | **Do not use `0.0.0.0`** |
 | `port` | `OPENCODE_GO_PORT` | `8787` | Used by all VBS scripts and the installer |
 | `http_proxy` | `OPENCODE_GO_HTTP_PROXY` | `""` | Empty = direct connection, and **ignores** the `HTTP_PROXY`/`HTTPS_PROXY` environment variables |
+| `log` | `OPENCODE_GO_LOG` | `<package>\proxy.log` | Log path. Leave alone unless you need the log elsewhere; the self-test points it at a temp file so test traffic never lands in the production log |
 
 The `http_proxy` default is deliberate. `urllib` normally honors `HTTP_PROXY`/`HTTPS_PROXY`; if a local proxy like Clash is configured there, it may hijack traffic to `opencode.ai` and produce the misleading `upstream connect failed` 502. This proxy ignores those variables unless you explicitly opt in.
 

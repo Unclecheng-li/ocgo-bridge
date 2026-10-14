@@ -18,6 +18,7 @@ import os
 import socket
 import subprocess
 import sys
+import tempfile
 import threading
 import time
 import urllib.error
@@ -127,6 +128,11 @@ def main():
     env["OPENCODE_GO_KEY"] = KEY
     # Make sure the test does not accidentally inherit a user config.json
     env["OPENCODE_GO_MODEL"] = "deepseek-v4.1-flash"
+    # Keep test traffic out of the package's proxy.log. The log is the first
+    # place anyone looks when diagnosing, so it must not contain mock requests
+    # interleaved with a live proxy's.
+    env["OPENCODE_GO_LOG"] = os.path.join(tempfile.gettempdir(),
+                                          "ocgo-selftest.log")
 
     proc = subprocess.Popen(
         [sys.executable, PROXY, "--port", str(PROXY_PORT)],

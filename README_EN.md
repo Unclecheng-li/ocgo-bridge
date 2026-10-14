@@ -253,7 +253,9 @@ $env:OPENCODE_GO_KEY  = "oc_sk_xxx"
 python proxy.py
 ```
 
-Supported variables: `OPENCODE_GO_KEY`, `OPENCODE_GO_UPSTREAM`, `OPENCODE_GO_UA`, `OPENCODE_GO_MODEL`, `OPENCODE_GO_HOST`, `OPENCODE_GO_PORT`, `OPENCODE_GO_HTTP_PROXY`.
+Supported variables: `OPENCODE_GO_KEY`, `OPENCODE_GO_UPSTREAM`, `OPENCODE_GO_UA`, `OPENCODE_GO_MODEL`, `OPENCODE_GO_HOST`, `OPENCODE_GO_PORT`, `OPENCODE_GO_HTTP_PROXY`, `OPENCODE_GO_LOG`.
+
+> `OPENCODE_GO_LOG` overrides the log path, which defaults to `proxy.log` next to `proxy.py`. The self-test uses it to send test traffic to a temp file instead of polluting the production log.
 
 ---
 

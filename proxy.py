@@ -138,7 +138,12 @@ def resolve_model(model):
         return low, raw != low
     return DEFAULT_MODEL, raw != DEFAULT_MODEL
 
-LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "proxy.log")
+# 日志默认写在 proxy.py 旁边。允许 OPENCODE_GO_LOG 覆盖: 自检脚本会把日志
+# 指到临时文件, 免得测试流量混进生产日志 —— 排错第一步就是看 proxy.log,
+# 混进测试记录会干扰判断。
+_LOG_OVERRIDE = str(cfg("log", "OPENCODE_GO_LOG", "")).strip()
+LOG_PATH = _LOG_OVERRIDE or os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "proxy.log")
 
 
 def log(msg):
